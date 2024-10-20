@@ -9,7 +9,7 @@ const GameList = ({ connection, publicKey, sendTransaction, wallet, setGame }) =
   const [joinableGames, setJoinableGames] = useState([]); // Predefined list of games
   const [myGames, setMyGames] = useState([]); // Predefined list of games
   const programId = new PublicKey(import.meta.env.VITE_PROGRAM_ID);
-  const program = new Program(idl, programId);
+  const program = new Program(idl as any, programId);
   
   async function getSosAccounts(): Promise<void> {
     const provider = await getProvider();

@@ -19,7 +19,7 @@ const O_SVG = () => (
   </svg>
 );
 
-const Board = ({ setGame, game, publicKey, connection }: {connection: Connection}) => {
+const Board = ({ setGame, game, publicKey, connection }: {setGame: any, game: any, publicKey: any, connection: Connection}) => {
   const convertTo2D = (arr, size) => {
     const result = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -30,7 +30,7 @@ const Board = ({ setGame, game, publicKey, connection }: {connection: Connection
   };
 
   const programId = new PublicKey(import.meta.env.VITE_PROGRAM_ID);
-  const program = new Program(idl, programId);
+  const program = new Program(idl as any, programId);
   const [board, setBoard] = useState(convertTo2D(game.board, 5));
   const [piece, setPiece] = useState(1);
 
@@ -57,7 +57,7 @@ const Board = ({ setGame, game, publicKey, connection }: {connection: Connection
   };
 
   const getCurrentGame = async() => {
-    let updatedGame = await program.account.sos.fetch(
+    let updatedGame: any = await program.account.sos.fetch(
       game.pubkey
     );
     setGame(updatedGame);
